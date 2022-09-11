@@ -6,7 +6,8 @@ import (
 )
 
 type Env struct {
-	Db *sqlx.DB
+	Db     *sqlx.DB
+	Config Config
 }
 
 func NewRouter(env Env) *gin.Engine {
