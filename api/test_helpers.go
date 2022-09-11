@@ -11,7 +11,7 @@ import (
 )
 
 func SetupRouter() (*sql.DB, *gin.Engine) {
-	db, err := sql.Open("sqlite3", "file:test.db?mode=memory")
+	db, err := sql.Open("sqlite3", ":memory:")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -24,6 +24,7 @@ func SetupRouter() (*sql.DB, *gin.Engine) {
 	router := NewRouter(Env{
 		Db: db,
 	})
+	gin.SetMode(gin.ReleaseMode)
 
 	return db, router
 }
