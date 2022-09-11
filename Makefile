@@ -1,7 +1,8 @@
+.PHONY: linters test validate docker-validate shell
 linters:
 	./entrypoint.sh linters
 
-tests:
+test:
 	./entrypoint.sh tests
 
 validate:
