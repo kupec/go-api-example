@@ -10,13 +10,13 @@ type Env struct {
 	Db *sql.DB
 }
 
-func StartApi(env Env) {
+func NewRouter(env Env) *gin.Engine {
 	r := gin.Default()
 
 	r.GET("/health_check", healthCheck)
 	r.GET("/users", env.listUsers)
 
-	r.Run()
+	return r
 }
 
 func ResponseWithError(c *gin.Context, err error) {

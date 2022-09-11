@@ -12,7 +12,5 @@ func (env Env) listUsers(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, gin.H{
-		"list": users,
-	})
+	c.JSON(200, users)
 }

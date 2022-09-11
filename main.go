@@ -9,13 +9,14 @@ import (
 )
 
 func main() {
-	db, err := sql.Open("sqlite3", "test.db")
+	db, err := sql.Open("sqlite3", "local.db")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
 
-	api.StartApi(api.Env{
+	router := api.NewRouter(api.Env{
 		Db: db,
 	})
+	router.Run()
 }
