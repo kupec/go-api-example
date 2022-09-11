@@ -1,15 +1,15 @@
 package main
 
 import (
-	"database/sql"
 	"log"
 
 	"example.com/api/api"
+	"github.com/jmoiron/sqlx"
 	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
-	db, err := sql.Open("sqlite3", "local.db")
+	db, err := sqlx.Connect("sqlite3", "local.db")
 	if err != nil {
 		log.Fatal(err)
 	}

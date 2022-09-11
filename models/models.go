@@ -1,6 +1,6 @@
 package models
 
-import "database/sql"
+import "github.com/jmoiron/sqlx"
 
 type User struct {
 	Id     int    `json:"id"`
@@ -8,24 +8,7 @@ type User struct {
 	Visits int    `json:"visits"`
 }
 
-func GetUsers(db *sql.DB) (users []User, err error) {
-	rows, err := db.Query("SELECT * FROM users")
-	if err != nil {
-		return
-	}
-
-	for rows.Next() {
-		user := User{}
-		err = rows.Scan(&user.Id, &user.Name, &user.Visits)
-		if err != nil {
-			break
-		}
-
-		users = append(users, user)
-	}
-	if err == nil {
-		err = rows.Err()
-	}
-
+func GetUsers(db *sqlx.DB) (users []User, err error) {
+	err = db.Select(&users, "SELECT * FROM users")
 	return
 }

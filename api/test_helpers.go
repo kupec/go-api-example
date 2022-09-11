@@ -1,25 +1,17 @@
 package api
 
 import (
-	"database/sql"
-	"log"
 	"net/http"
 	"net/http/httptest"
 
 	"github.com/gin-gonic/gin"
+	"github.com/jmoiron/sqlx"
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func SetupRouter() (*sql.DB, *gin.Engine) {
-	db, err := sql.Open("sqlite3", ":memory:")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	_, err = db.Exec("CREATE TABLE users(id INT, name varchar(100), visits INT)")
-	if err != nil {
-		log.Fatal(err)
-	}
+func SetupRouter() (*sqlx.DB, *gin.Engine) {
+	db := sqlx.MustConnect("sqlite3", ":memory:")
+	db.MustExec("CREATE TABLE users(id INT, name varchar(100), visits INT)")
 
 	router := NewRouter(Env{
 		Db: db,

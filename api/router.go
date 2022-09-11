@@ -1,13 +1,12 @@
 package api
 
 import (
-	"database/sql"
-
 	"github.com/gin-gonic/gin"
+	"github.com/jmoiron/sqlx"
 )
 
 type Env struct {
-	Db *sql.DB
+	Db *sqlx.DB
 }
 
 func NewRouter(env Env) *gin.Engine {
