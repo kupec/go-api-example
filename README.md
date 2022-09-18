@@ -29,5 +29,5 @@ Create new migration
 
 Apply all migrations
 ```sh
-./bin/migrate.sh
+./bin/migrate.sh up
 ```
