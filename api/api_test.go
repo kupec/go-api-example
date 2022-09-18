@@ -7,6 +7,7 @@ import (
 
 	"example.com/api/models"
 	_ "github.com/mattn/go-sqlite3"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestHealthCheck(t *testing.T) {
@@ -16,9 +17,7 @@ func TestHealthCheck(t *testing.T) {
 	req, _ := http.NewRequest("GET", "/health_check", nil)
 	resp := DoRequest(router, req)
 
-	if resp.Code != 200 {
-		t.Errorf("Expected an 200 response. Got %d", resp.Code)
-	}
+	assert.Equal(t, 200, resp.Code)
 }
 
 func TestListUsers(t *testing.T) {
@@ -35,25 +34,9 @@ func TestListUsers(t *testing.T) {
 	req, _ := http.NewRequest("GET", "/users", nil)
 	resp := DoRequest(router, req)
 
-	if resp.Code != 200 {
-		t.Errorf("Expected an 200 response. Got %d", resp.Code)
-	}
+	assert.Equal(t, 200, resp.Code)
 
 	var responseList []models.User
 	json.Unmarshal(resp.Body.Bytes(), &responseList)
-	if len(responseList) != 1 {
-		t.Errorf("Expected response with len=1. Got %d", len(responseList))
-		t.Errorf("responseList=%v", responseList)
-	}
-
-	response := responseList[0]
-	if response.Id != user.Id {
-		t.Errorf("Expected id=%d. Got %d", user.Id, response.Id)
-	}
-	if response.Name != user.Name {
-		t.Errorf("Expected id=%s. Got %s", user.Name, response.Name)
-	}
-	if response.Visits != user.Visits {
-		t.Errorf("Expected id=%d. Got %d", user.Visits, response.Visits)
-	}
+	assert.Equal(t, []models.User{user}, responseList)
 }

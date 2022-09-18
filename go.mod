@@ -45,6 +45,7 @@ require (
 	github.com/cncf/xds/go v0.0.0-20220520190051-1e77728a1eaa // indirect
 	github.com/cockroachdb/cockroach-go/v2 v2.2.16 // indirect
 	github.com/cznic/mathutil v0.0.0-20181122101859-297441e03548 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/denisenkom/go-mssqldb v0.12.2 // indirect
 	github.com/edsrzf/mmap-go v1.1.0 // indirect
 	github.com/envoyproxy/go-control-plane v0.10.3 // indirect
@@ -112,10 +113,13 @@ require (
 	github.com/pierrec/lz4/v4 v4.1.16 // indirect
 	github.com/pkg/browser v0.0.0-20210911075715-681adbf594b8 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20200410134404-eec4a21b6bb0 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/snowflakedb/gosnowflake v1.6.13 // indirect
+	github.com/stretchr/objx v0.4.0 // indirect
+	github.com/stretchr/testify v1.8.0 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
 	github.com/xanzy/go-gitlab v0.73.1 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
@@ -143,6 +147,7 @@ require (
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/uint128 v1.2.0 // indirect
 	modernc.org/b v1.0.3 // indirect
 	modernc.org/cc/v3 v3.38.1 // indirect
