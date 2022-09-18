@@ -24,12 +24,8 @@ func TestListUsers(t *testing.T) {
 	db, router := SetupRouter()
 	defer db.Close()
 
-	user := models.User{
-		Id:     1,
-		Name:   "name",
-		Visits: 2,
-	}
-	db.Exec("INSERT INTO users(id, name, visits) VALUES(?, ?, ?)", user.Id, user.Name, user.Visits)
+	user := NewUser()
+	db.MustExec("INSERT INTO users(id, name, visits) VALUES(?, ?, ?)", user.Id, user.Name, user.Visits)
 
 	req, _ := http.NewRequest("GET", "/users", nil)
 	resp := DoRequest(router, req)
