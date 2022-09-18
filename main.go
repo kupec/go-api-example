@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"net/url"
 
 	"example.com/api/api"
 	"github.com/caarlos0/env/v6"
@@ -18,7 +19,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	db, err := sqlx.Connect("sqlite3", config.DatabaseURL)
+	db, err := initDatabase(config)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -37,5 +38,19 @@ func newConfig() (config api.Config, err error) {
 	}
 
 	err = env.Parse(&config)
+	return
+}
+
+func initDatabase(config api.Config) (db *sqlx.DB, err error) {
+	dbURL, err := url.Parse(config.DatabaseURL)
+	if err != nil {
+		return
+	}
+
+	db, err = sqlx.Connect(dbURL.Scheme, config.DatabaseURL)
+	if err != nil {
+		return
+	}
+
 	return
 }

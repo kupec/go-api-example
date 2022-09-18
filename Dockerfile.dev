@@ -1,7 +1,12 @@
 FROM golang:1.19-alpine as builder
-RUN apk update && apk add build-base
+ENV MIGRATE_URL="github.com/golang-migrate/migrate/v4/cmd/migrate"
 
 WORKDIR /app
+RUN apk update \
+    && apk add build-base curl \
+    && go get -tags 'sqlite3' -u "$MIGRATE_URL" \
+    && go install -tags 'sqlite3' "${MIGRATE_URL}@latest"
+
 COPY go.mod go.sum .
 RUN go mod download
 
