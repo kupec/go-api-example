@@ -1,4 +1,8 @@
-.PHONY: linters test validate docker-validate shell
+.PHONY: all linters test validate docker-validate shell
+
+all:
+	go build -o app
+
 linters:
 	./entrypoint.sh linters
 

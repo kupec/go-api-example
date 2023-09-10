@@ -30,7 +30,7 @@ func Faker() *faker.Faker {
 func SetupRouter() (*sqlx.DB, *gin.Engine) {
 	db := initDatabase()
 
-	router := NewRouter(Env{
+	router := NewRouter(App{
 		Db: db,
 	})
 	gin.SetMode(gin.ReleaseMode)

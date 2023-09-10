@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"net/url"
 
 	"example.com/api/api"
 	"github.com/caarlos0/env/v6"
@@ -25,8 +24,9 @@ func main() {
 	}
 	defer db.Close()
 
-	router := api.NewRouter(api.Env{
-		Db: db,
+	router := api.NewRouter(api.App{
+		Db:     db,
+		Config: config,
 	})
 	router.Run(config.ApiBind)
 }
@@ -42,12 +42,7 @@ func newConfig() (config api.Config, err error) {
 }
 
 func initDatabase(config api.Config) (db *sqlx.DB, err error) {
-	dbURL, err := url.Parse(config.DatabaseURL)
-	if err != nil {
-		return
-	}
-
-	db, err = sqlx.Connect(dbURL.Scheme, config.DatabaseURL)
+	db, err = sqlx.Connect(config.DatabaseDriver, config.DatabaseSource)
 	if err != nil {
 		return
 	}

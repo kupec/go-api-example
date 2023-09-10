@@ -1,6 +1,7 @@
 package api
 
 type Config struct {
-	DatabaseURL string `env:"DATABASE_URL,required"`
-	ApiBind     string `env:"API_BIND" envDefault:":8000"`
+	DatabaseDriver string `env:"DATABASE_DRIVER,required"`
+	DatabaseSource string `env:"DATABASE_SOURCE,required"`
+	ApiBind        string `env:"API_BIND" envDefault:":8000"`
 }

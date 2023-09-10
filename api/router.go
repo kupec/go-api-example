@@ -5,16 +5,16 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-type Env struct {
+type App struct {
 	Db     *sqlx.DB
 	Config Config
 }
 
-func NewRouter(env Env) *gin.Engine {
+func NewRouter(app App) *gin.Engine {
 	r := gin.Default()
 
 	r.GET("/health_check", healthCheck)
-	r.GET("/users", env.listUsers)
+	r.GET("/users", app.listUsers)
 
 	return r
 }

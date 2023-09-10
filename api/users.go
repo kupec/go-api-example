@@ -5,8 +5,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (env Env) listUsers(c *gin.Context) {
-	users, err := models.GetUsers(env.Db)
+func (app App) listUsers(c *gin.Context) {
+	users, err := models.GetUsers(app.Db)
 	if err != nil {
 		ResponseWithError(c, err)
 		return

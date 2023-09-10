@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -ex
 
 ENV_PATH="${ENV_PATH:-".env"}"
